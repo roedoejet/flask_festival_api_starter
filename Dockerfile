@@ -1,10 +1,10 @@
 FROM ubuntu:xenial
 
 # copy src files from http://tts.speech.cs.cmu.edu/11-823/hints/clock.html
-COPY src /
-COPY api.py /
-COPY requirements.txt /
-COPY model /
+RUN mkdir /app /app/audio
+COPY api.py /app
+COPY requirements.txt /app
+COPY model /app
 
 # install necessary packages
 RUN apt-get update -y
@@ -30,10 +30,10 @@ ENV ESTDIR=/build/speech_tools
 ENV FESTVOXDIR=/build/festvox
 ENV SPTKDIR=/build/SPTK
 ENV FESTIVALDIR = /build/festival
-ENV VOICEPATH = /model/nrc_moh_am/festvox/nrc_moh_am_clunits.scm
-ENV MODELPATH = /model/nrc_moh_am
-ENV VOICENAME = nrc_moh_am
-ENV AUDIODIR = /src/audio
+ENV VOICEPATH = /app/model/eng_clock/festvox/nrc_time_ap_ldom.scm
+ENV MODELPATH = /app/model/eng_clock
+ENV VOICENAME = nrc_time_ap_ldom
+ENV AUDIODIR = /app/audio
 
 # patch
 RUN cd build && mkdir SPTK

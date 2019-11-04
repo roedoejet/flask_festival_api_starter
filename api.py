@@ -42,6 +42,18 @@ def cd(path):
     finally:
         os.chdir(old_path)
 
+def digits_to_time(dig: str):
+    ''' Turns the time requested into the proper format that 'saythistime' function expects in Festival
+        
+        >>> digits_to_time('111')
+        '01:11'
+    '''
+    if len(dig) < 3 or len(dig) > 4:
+        abort(400)
+    if len(dig) == 3:
+        dig = '0' + dig
+    return dig[:2] + ':' + dig[2:]
+
 class TTSData(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
@@ -69,8 +81,12 @@ class TTSData(Resource):
         else:
             sub_args = [VOICEPATH,
                         '-b',
-                        f"(voice_{VOICENAME}_clunits)",
-                        f"(utt.save.wave (SayText \"{text}\") \"{audio_path}\")"]
+                        f"(voice_{VOICENAME})",
+                        # I am using 'saythistime' because that is the function used
+                        # by the Festival limited domain synthesizer for the talking clock in my model
+                        # The function can be found here: model/eng_clock/festvox/nrc_time_ap.scm
+                        # If you need your own function you can just swap this out.
+                        f"(utt.save.wave (saythistime \"{digits_to_time(text)}\") \"{audio_path}\")"]
             with cd(MODELPATH):
                 response = festival(sub_args)
                 if isinstance(response, str) and 'Unknown' in response:
