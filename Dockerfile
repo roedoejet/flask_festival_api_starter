@@ -2,6 +2,7 @@ FROM ubuntu:xenial
 
 # copy src files from http://tts.speech.cs.cmu.edu/11-823/hints/clock.html
 RUN mkdir /app /app/audio
+COPY ./src /
 COPY ./api.py /app/
 COPY ./requirements.txt /app/
 COPY model /app/model
