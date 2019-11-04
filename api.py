@@ -16,7 +16,7 @@ AUDIODIR = os.getenv('AUDIODIR')
 
 API_KEY = "ThisIsNotASecureKey"
 
-festival = Command(f"{FESTIVALDIR}/bin/festival")
+festival = Command("{}/bin/festival".format(FESTIVALDIR))
 application = Flask(__name__)
 api = Api(application)
 
