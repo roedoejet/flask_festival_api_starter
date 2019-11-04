@@ -72,21 +72,22 @@ class TTSData(Resource):
     def get(self):
         args = self.parser.parse_args()
         text = args['text']
-        audio_path = os.path.join(AUDIODIR, f"{args['text']}.wav")
+        fname = "{}.wav".format(args['text'])
+        audio_path = os.path.join(AUDIODIR, fname)
         if os.path.exists(audio_path):
             return send_file(audio_path,
                               as_attachment=args['attach'],
                              mimetype='audio/wav',
-                             attachment_filename=f"{args['text']}.wav")
+                             attachment_filename=fname)
         else:
             sub_args = [VOICEPATH,
                         '-b',
-                        f"(voice_{VOICENAME})",
+                        "(voice_{})".format(VOICENAME),
                         # I am using 'saythistime' because that is the function used
                         # by the Festival limited domain synthesizer for the talking clock in my model
                         # The function can be found here: model/eng_clock/festvox/nrc_time_ap.scm
                         # If you need your own function you can just swap this out.
-                        f"(utt.save.wave (saythistime \"{digits_to_time(text)}\") \"{audio_path}\")"]
+                        "(utt.save.wave (saythistime \"{}\") \"{}\")".format(digits_to_time(text), audio_path)]
             with cd(MODELPATH):
                 response = festival(sub_args)
                 if isinstance(response, str) and 'Unknown' in response:
@@ -95,7 +96,7 @@ class TTSData(Resource):
                     return send_file(audio_path,
                                       as_attachment=args['attach'],
                                      mimetype='audio/wav',
-                                     attachment_filename=f"{args['text']}.wav")
+                                     attachment_filename=fname)
 
 api.add_resource(TTSData, '/api/v1/tts')
 
