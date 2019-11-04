@@ -2,9 +2,9 @@ FROM ubuntu:xenial
 
 # copy src files from http://tts.speech.cs.cmu.edu/11-823/hints/clock.html
 RUN mkdir /app /app/audio
-COPY api.py /app
-COPY requirements.txt /app
-COPY model /app
+COPY api.py /app/api.py
+COPY requirements.txt /app/requirements.txt
+COPY model /app/model
 
 # install necessary packages
 RUN apt-get update -y
