@@ -2,8 +2,8 @@ FROM ubuntu:xenial
 
 # copy src files from http://tts.speech.cs.cmu.edu/11-823/hints/clock.html
 RUN mkdir /app /app/audio
-COPY api.py /app/api.py
-COPY requirements.txt /app/requirements.txt
+COPY ./api.py /app/
+COPY ./requirements.txt /app/
 COPY model /app/model
 
 # install necessary packages
@@ -11,7 +11,7 @@ RUN apt-get update -y
 RUN apt-get install -y libncurses5-dev sox patch build-essential
 RUN apt-get install -y festlex-poslex festlex-cmu
 RUN apt-get install -y automake bc curl g++ git libc-dev libreadline-dev libtool make ncurses-dev nvi pkg-config python3 python-dev python-setuptools unzip wavpack wget zip zlib1g-dev python3-pip
-RUN pip3 install /app/requirements.txt
+RUN pip3 install -r /app/requirements.txt
 
 # unpack src
 RUN mkdir /build
