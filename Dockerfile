@@ -11,7 +11,7 @@ RUN apt-get update -y
 RUN apt-get install -y libncurses5-dev sox patch build-essential
 RUN apt-get install -y festlex-poslex festlex-cmu
 RUN apt-get install -y automake bc curl g++ git libc-dev libreadline-dev libtool make ncurses-dev nvi pkg-config python3 python-dev python-setuptools unzip wavpack wget zip zlib1g-dev python3-pip
-RUN pip3 install /requirements.txt
+RUN pip3 install /app/requirements.txt
 
 # unpack src
 RUN mkdir /build
