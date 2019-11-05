@@ -47,4 +47,4 @@ RUN cd /build/festival && ./configure && make
 RUN cd /build/festvox && ./configure && make
 
 WORKDIR /app
-CMD gunicorn api --bind 0.0.0.0:8000
+CMD gunicorn api --bind 0.0.0.0:$PORT
