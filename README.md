@@ -2,7 +2,7 @@
 
 :warning: :construction: This repo is currently **under construction** :construction: :warning:
 
-[![Documentation Status](https://readthedocs.org/projects/flask-festival-api-starter/badge/?version=latest)](https:/flask-festival-api-starter.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/flask-festival-api-starter/badge/?version=latest)](https://flask-festival-api-starter.readthedocs.io/en/latest/)
 [![license](https://img.shields.io/github/license/roedoejet/flask_festival_api_starter.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
@@ -27,7 +27,7 @@ Just clone it!
 
 ## Usage
 
-Please visit the [docs](https:/flask-festival-api-starter.readthedocs.io/en/latest/) for more info.
+Please visit the [docs](https://flask-festival-api-starter.readthedocs.io/en/latest/) for more info.
 
 ## Contributing
 
