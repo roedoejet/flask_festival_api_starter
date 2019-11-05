@@ -13,29 +13,29 @@ First, you might want to
 
 Here are the steps to use your voice instead of mine for the talking clock:
 
-a. Record audio for the 24 sentences in `model/eng_clock/etc/txt.done.data`. I suggest using CSTR's `Speech Recorder <http://www.cstr.ed.ac.uk/research/projects/speechrecorder/>`_ - visit the `Speech Recorder Documentation <http://www.cstr.ed.ac.uk/research/projects/speechrecorder/SpeechRecorder_User_Guide.pdf>`_ for instructions on how to use it. They must be labelled with the same format, (ie, time0001, time0002 etc). I recommend 48KHz sample rate.
+a. Record audio for the 24 sentences in :code:`model/eng_clock/etc/txt.done.data`. I suggest using CSTR's `Speech Recorder <http://www.cstr.ed.ac.uk/research/projects/speechrecorder/>`_ - visit the `Speech Recorder Documentation <http://www.cstr.ed.ac.uk/research/projects/speechrecorder/SpeechRecorder_User_Guide.pdf>`_ for instructions on how to use it. They must be labelled with the same format, (ie, time0001, time0002 etc). I recommend 48KHz sample rate.
 
-b. Move audio files to `model/eng_clock/recordings`
+b. Move audio files to  :code:`model/eng_clock/recordings`
 
-c. Change directories, `cd model/eng_clock`
+c. Change directories, :code:`cd model/eng_clock`
 
-d. Get the wavs (move to the right directly and downsample) `./bin/get_wavs recording/*.wav`
+d. Get the wavs (move to the right directly and downsample) :code:`./bin/get_wavs recording/*.wav`
 
-e. Prune silence `./bin/prune_silence`. Look at the files in `model/eng_clock/wavs` and see if they were pruned too much. You can fix these manually if needed.
+e. Prune silence :code:`./bin/prune_silence`. Look at the files in :code:`model/eng_clock/wavs` and see if they were pruned too much. You can fix these manually if needed.
 
-f. Make label files `./bin/make_labs prompt-wav/*.wav`
+f. Make label files :code:`./bin/make_labs prompt-wav/*.wav`
 
-g. Build utterance structure `$FESTIVALDIR/bin/festival -b festvox/build_ldom.scm '(build_utts "etc/txt.done.data")'`
+g. Build utterance structure :code:`$FESTIVALDIR/bin/festival -b festvox/build_ldom.scm '(build_utts "etc/txt.done.data")'`
 
-h. Extract pitchmarks `./bin/make_pm_wave wav/*.wav`
+h. Extract `pitchmarks <http://www.speech.zone/courses/speech-synthesis/module-6-speech-signal-analysis-modelling/videos/epoch-detection/>`_ :code:`./bin/make_pm_wave wav/*.wav`
 
-i. Fix pitchmarks `./bin/make_pm_fix pm/*.pm`
+i. Fix pitchmarks :code:`./bin/make_pm_fix pm/*.pm`
 
-j. Power normalize `./bin/simple_powernormalize wav/*.wav`
+j. Power normalize :code:`./bin/simple_powernormalize wav/*.wav`
 
-k. Get MCEP vectors `./bin/make_mcep wav/*.wav`
+k. Get MCEP vectors :code:`./bin/make_mcep wav/*.wav`
 
-l. Build synthesizer `$FESTIVALDIR/bin/festival -b festvox/build_ldom.scm '(build_clunits "etc/txt.done.data")'`
+l. Build synthesizer :code:`$FESTIVALDIR/bin/festival -b festvox/build_ldom.scm '(build_clunits "etc/txt.done.data")'`
 
 m. Commit your changes, and either build your docker container again and run locally or push to heroku. Check the start guide for more info.
 
