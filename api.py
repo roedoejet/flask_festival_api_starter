@@ -1,6 +1,7 @@
 ''' A barebones Flask API for accessing Festival
 '''
 import os
+import re
 import contextlib
 from functools import wraps
 
@@ -48,7 +49,7 @@ def digits_to_time(dig: str):
         >>> digits_to_time('111')
         '01:11'
     '''
-    if len(dig) < 3 or len(dig) > 4:
+    if not re.match(r'[0-9]{3,4}$', dig):
         abort(400)
     if len(dig) == 3:
         dig = '0' + dig

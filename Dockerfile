@@ -30,11 +30,11 @@ ENV ESTDIR=/build/speech_tools
 # ENV FLITEDIR=/build/flite
 ENV FESTVOXDIR=/build/festvox
 ENV SPTKDIR=/build/SPTK
-ENV FESTIVALDIR = /build/festival
-ENV VOICEPATH = /app/model/eng_clock/festvox/nrc_time_ap_ldom.scm
-ENV MODELPATH = /app/model/eng_clock
-ENV VOICENAME = nrc_time_ap_ldom
-ENV AUDIODIR = /app/audio
+ENV FESTIVALDIR=/build/festival
+ENV VOICEPATH=/app/model/eng_clock/festvox/nrc_time_ap_ldom.scm
+ENV MODELPATH=/app/model/eng_clock
+ENV VOICENAME=nrc_time_ap_ldom
+ENV AUDIODIR=/app/audio
 
 # patch
 RUN cd build && mkdir SPTK
@@ -47,4 +47,4 @@ RUN cd /build/festival && ./configure && make
 RUN cd /build/festvox && ./configure && make
 
 WORKDIR /app
-CMD gunicorn api --bind 0.0.0.0:$PORT
+CMD gunicorn api --bind 0.0.0.0:8000
