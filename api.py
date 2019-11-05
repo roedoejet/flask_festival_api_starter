@@ -4,6 +4,7 @@ import os
 import re
 import contextlib
 from functools import wraps
+from time import gmtime, strftime
 
 from sh import Command
 from flask import abort, Flask, request, send_file
@@ -73,6 +74,8 @@ class TTSData(Resource):
     def get(self):
         args = self.parser.parse_args()
         text = args['text']
+        if text == 'current-time':
+            text = strftime("%H%M", gmtime())
         fname = "{}.wav".format(args['text'])
         audio_path = os.path.join(AUDIODIR, fname)
         if os.path.exists(audio_path):
