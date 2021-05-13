@@ -41,4 +41,4 @@ This is built using lots of documentation from other sources, notably
 
 ## License
 
-[MIT © Aidan Pine.](LICENSE)
+[MIT © Aidan Pine, National Research Council Canada.](LICENSE)
